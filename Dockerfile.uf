@@ -1,0 +1,7 @@
+# Official Splunk Universal Forwarder image, extended ONLY with networking tools.
+# Retains the image's original ENTRYPOINT and CMD (managed by Splunk Ansible).
+FROM splunk/universalforwarder:10.4.4
+USER root
+RUN microdnf install -y iproute iputils nmap-ncat procps-ng && \
+    microdnf clean all
+USER ansible
